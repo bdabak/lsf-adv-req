@@ -1,0 +1,14 @@
+ .valMainText {
+     text-align: center !important;
+     font-size: x-large !important;
+ }
+ 
+ .valTimerText {
+     text-align: center !important;
+     font-size: large !important;
+     font-weight: bold !important;
+ }
+
+ .emphasizeLimit span{
+    padding:0.3rem !important;
+ }

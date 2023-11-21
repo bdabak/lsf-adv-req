@@ -1,0 +1,20 @@
+<mvc:View
+		controllerName="com.lesaffre.advance.controller.BaseController"
+		xmlns:mvc="sap.ui.core.mvc"
+		xmlns="sap.m"
+		>
+
+	<MessagePage
+			id="welcomePage"
+			text="{i18n>newAdvanceGuidance}"
+			icon="sap-icon://sales-order-item"
+			description=""
+			showHeader="false"
+			showNavButton="{device>/system/phone}"
+			navButtonPress=".onNavBack">
+			<buttons>
+				<Button text="{i18n>createNewRequest}" press=".onNewRequest" />
+			</buttons>
+	</MessagePage> 
+
+</mvc:View>

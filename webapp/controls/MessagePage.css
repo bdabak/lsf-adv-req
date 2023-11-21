@@ -1,0 +1,40 @@
+.smod-message-page{
+    --sapIllus_BrandColorPrimary: #0a6ed1;
+    --sapIllus_BrandColorSecondary: #72b5f8;
+    --sapIllus_StrokeDetailColor: #4a5055;
+    --sapIllus_Layering1: #9da4aa;
+    --sapIllus_Layering2: #c6cace;
+    --sapIllus_BackgroundColor: #e7e9ea;
+    --sapIllus_ObjectFillColor: #fff;
+    --sapIllus_AccentColor: #ffba10;
+    --sapIllus_NoColor: none;
+    --sapIllus_PatternShadow: url(#sapIllus_PatternShadow);
+    --sapIllus_PatternHighlight: url(#sapIllus_PatternHighlight);
+    --sapContent_Illustrative_Color1: #0a6ed1;
+    --sapContent_Illustrative_Color2: #72b5f8;
+    --sapContent_Illustrative_Color3: #ffba10;
+    --sapContent_Illustrative_Color4: #4a5055;
+    --sapContent_Illustrative_Color5: #9da4aa;
+    --sapContent_Illustrative_Color6: #c6cace;
+    --sapContent_Illustrative_Color7: #e7e9ea;
+    --sapContent_Illustrative_Color8: #fff;
+    --sapContent_Illustrative_Color9: #64edd2;
+    --sapContent_Illustrative_Color10: #e7e9ea;
+    --sapContent_Illustrative_Color11: #f31ded;
+    --sapContent_Illustrative_Color12: #5dc122;
+    --sapContent_Illustrative_Color13: #4ba1f6;
+    --sapContent_Illustrative_Color14: #298ff4;
+    --sapContent_Illustrative_Color15: #e6a400;
+    --sapContent_Illustrative_Color16: #085aaa;
+    --sapContent_Illustrative_Color17: #00a5a8;
+    --sapContent_Illustrative_Color18: #d9ddde;
+    --sapContent_Illustrative_Color19: #ccd0d2;
+    --sapContent_Illustrative_Color20: #bec4c6;
+
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    padding: 1rem;
+    box-sizing: border-box;
+    justify-content: center;
+}

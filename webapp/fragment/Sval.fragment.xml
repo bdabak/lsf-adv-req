@@ -1,0 +1,24 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form"
+	xmlns:smod="com.lesaffre.advance.controls">
+	<Dialog title="{i18n>ValidationDialog}" contentHeight="95%" contentWidth="100%" class="valDialog">
+		<beginButton>
+			<Button text="Yeniden Gönder" enabled="{valModel>/Resend}" press="onResend"/>
+		</beginButton>
+		<endButton>
+			<!--	<Button text="Onayla" press="onValidate" enabled="{valModel>/ValEnabled}"/>-->
+			<Button enabled="{valModel>/validated}" type="Emphasized" text="Onayla" press="onValidate"/>
+		</endButton>
+		<content>
+			<FlexBox justifyContent="Center">
+				<Text text="{i18n>CommunicationInformation} {valModel>/Fvlpn} {i18n>Validate}"
+					class="valMainText sapUiTinyMarginBottom sapUiMediumMarginTop"></Text>
+			</FlexBox>
+			<FlexBox justifyContent="Center">
+				<Text text="{valModel>/Remaining}" class="valTimerText sapUiMediumMarginTop sapUiMediumMarginLeft"/>
+			</FlexBox>
+			<FlexBox justifyContent="Center">
+				<smod:SmodCodeInput length="4" validated="{valModel>/validated}" value="{valModel>/validationCode}"/>
+			</FlexBox>
+		</content>
+	</Dialog>
+</core:FragmentDefinition>

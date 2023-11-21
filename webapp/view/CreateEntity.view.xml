@@ -1,0 +1,99 @@
+<mvc:View controllerName="com.lesaffre.advance.controller.CreateEntity" xmlns:u="sap.ui.unified" xmlns:f="sap.ui.layout.form"
+	xmlns:l="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" xmlns="sap.m">
+	<semantic:DetailPage id="page" navButtonPress="onNavBack" busy="{advanceModel>/busy}" busyIndicatorDelay="{advanceModel>/delay}" showNavButton="{device>/system/phone}">
+		<semantic:content>
+			<f:Form editable="true" id="idNewLeaveRequestForm" class="editableForm" title="{i18n>createAdvanceRequest}">
+				<f:layout>
+					<f:ResponsiveGridLayout adjustLabelSpan="false" emptySpanL="4" emptySpanM="4" labelSpanL="3" labelSpanM="3"/>
+				</f:layout>
+				<f:formContainers>
+					<f:FormContainer>
+						<f:formElements>
+							<f:FormElement label="{i18n>requestOnBehalfOfName}">
+								<f:fields>
+									<Input name="Name" id="Name_id" editable="false" value="{advanceModel>/Request/Ename}"/>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="{i18n>advanceRequestDate}">
+								<f:fields>
+									<DatePicker required="true" id="Rqdat"
+										value="{path:'advanceModel>/Request/Rqdat', type: 'sap.ui.model.type.Date', formatOptions:{ UTC: true, pattern: 'dd.MM.yyyy'}}"
+										placeholder="dd/mm/yyyy" change=".onChangeRqdat"></DatePicker>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="{i18n>requestOnBehalfOfId}" visible="false">
+								<f:fields>
+									<Input type="Number" value="{advanceModel>/Request/Pernr}" name="Pernr" id="Pernr_id" showValueHelp="true"
+										valueHelpRequest="onSearchPersonnel" required="false" submit="getPersData" editable="false"/>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="{i18n>advanceAmount}">
+								<f:fields>
+									<Input required="true" type="Number" name="Advam" id="Advam_id" visible="true" value="{advanceModel>/Request/Advam}"/>
+									<Input name="Advcr" value="{advanceModel>/Request/Waers}" id="Advcr_id" editable="false">
+										<layoutData>
+											<l:GridData span="XL2 L2 M2 S2"/>
+										</layoutData>
+									</Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="">
+								<f:fields>
+									<ObjectStatus id="Advlm_id"
+										text="{i18n>advanceLimit}: {path:'advanceModel>/Request/Advlm', type:'sap.ui.model.type.Float', formatOptions:{ decimals:2, groupingEnabled: false, decimalSeparator: ',' }}"
+										state="Indication03" inverted="true" class="emphasizeLimit"/>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="{i18n>advanceReason}">
+								<f:fields>
+									<TextArea name="Advrs" value="{advanceModel>/Request/Advrs}" required="true" id="Advrs_id" cols="5" rows="3"/>
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+				</f:formContainers>
+			</f:Form>
+			<!-- <f:SimpleForm class="editableForm" columnsL="1" columnsM="1" editable="true" emptySpanL="4" emptySpanM="4" id="newEntitySimpleForm" labelSpanL="3" labelSpanM="3" layout="ResponsiveGridLayout" maxContainerCols="2" minWidth="1024" title="Avans Talebi Oluştur">
+                <f:content>
+                    <Label text="{i18n>requestOnBehalfOfId}" required="true" />
+                    <Input type="Number" name="Pernr" id="Pernr_id" showValueHelp="true" valueHelpRequest="onSearchPersonnel" required="true" submit="getPersData" />
+                    <Label text="{i18n>requestOnBehalfOfName}" />
+                    <Input type="Text" name="Name" id="Name_id" editable="false" />
+                    <Label text="{i18n>advanceAmount}" required="true" />
+                    <Input type="Number" name="Advam" id="Advam_id" visible="true" />
+                    <Label text="{i18n>advanceCurrency}" />
+                    <Input name="Advcr" value="{advanceModel>/Waers}" id="Advcr_id" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onCurrencyValueHelpRequest" editable="false" />
+                    <Label text="{i18n>advanceLimit}" required="false" />
+                    <Text id="Advlm_id" class="emphasizeLimit" />
+
+                    <Label text="{i18n>advanceReason}" required="true" />
+                    <TextArea name="Advrs" id="Advrs_id" cols="5" rows="3" />
+                </f:content>
+            </f:SimpleForm> -->
+			<!-- <f:SimpleForm class="editableForm" visible="{advanceModel>/DisplayEnabled}" columnsL="1" columnsM="1" editable="true" emptySpanL="4" emptySpanM="4" id="newEntitySimpleForm2" labelSpanL="3" labelSpanM="3" layout="ResponsiveGridLayout" maxContainerCols="2" minWidth="1024">
+                <f:content>
+                    <HBox>
+                        <u:FileUploader id="advanceFileUploader" placeholder="İkinci avans için belge ekleyiniz." uploadComplete="onUploadComplete" sendXHR="true" useMultipart="false" fileType="pdf,xls,xlsx,doc,docx,tiff,jpg,png,zip,rar" width="380px" maximumFileSize="5" />
+                        <layoutData>
+                            <l:GridData linebreak="true" indentL="2" indentM="3" />
+                        </layoutData>
+                    </HBox>
+                    <Button class="myButton" id="idButtonGetConsentDocs" width="380px" icon="sap-icon://document-text" text="{i18n>getConsentDocsButton}" press="onGetConsentDocs" type="Accept">
+                        <layoutData>
+                            <l:GridData indentL="3" indentM="3" />
+                        </layoutData>
+                    </Button>
+                    <CheckBox id="checkBox" text="İkinci avans almak için açık rıza ve aydınlatma metnini okudum, onaylıyorum." width="380px" wrapping="true">
+                        <layoutData>
+                            <l:GridData linebreak="true" indentL="3" indentM="3" />
+                        </layoutData>
+                    </CheckBox>
+                </f:content>
+            </f:SimpleForm> -->
+		</semantic:content>
+		<semantic:customFooterContent>
+			<Button id="save" text="Kaydet ve Gönder" press="onSave" type="Emphasized"/>
+			<Button id="cancel" text="İptal" press="onCancel" type="Reject"/>
+		</semantic:customFooterContent>
+	</semantic:DetailPage>
+</mvc:View>

@@ -1,0 +1,87 @@
+<mvc:View controllerName="com.lesaffre.advance.controller.Detail" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic"
+	xmlns:f="sap.ui.layout.form">
+	<semantic:DetailPage id="detail" navButtonPress=".onNavBack" showNavButton="{device>/system/phone}" title="{i18n>detailTitle}"
+		busy="{detailView>/busy}" busyIndicatorDelay="{detailView>/delay}">
+		<semantic:content>
+			<ObjectHeader id="idDetailObjectHeader" title="{Advtx}" number="{ path: 'Advam', formatter: '.formatter.currencyValue' }"
+				numberUnit="{Advcr}">
+				<attributes>
+					<ObjectAttribute text="{i18n>nextApprover}: { path: 'Aprnm'}" id="attributew5" visible="{= ${Aprnm} !== '' }"/>
+				</attributes>
+				<statuses>
+					<ObjectStatus id="Rqast" text="{Rqasx}" state="{ path: 'Rqast', formatter: '.formatter.getRequestStatus' }"/>
+				</statuses>
+			</ObjectHeader>
+			<IconTabBar id="iconTabBar" class="sapUiResponsiveContentPadding">
+				<items>
+					<IconTabFilter id="iconTabBarFilter1" icon="sap-icon://hint" tooltip="{i18n>detailIconTabBarInfo}">
+						<f:Form editable="true" id="DisplayRequestForm" class="editableForm">
+							<f:layout>
+								<f:ResponsiveGridLayout adjustLabelSpan="false" emptySpanL="4" emptySpanM="4"/>
+							</f:layout>
+							<f:formContainers>
+								<f:FormContainer>
+									<f:formElements>
+										<f:FormElement label="{i18n>requestOnBehalfOfName}">
+											<f:fields>
+												<Text text="{Rqonm}"/>
+											</f:fields>
+										</f:FormElement>
+										<f:FormElement label="{i18n>advanceAmount}">
+											<f:fields>
+												<Text text="{path:'Advam', formatter:'.formatter.currencyValue'} {Advcr}"/>
+											</f:fields>
+										</f:FormElement>
+										<f:FormElement label="{i18n>advanceReason}">
+											<f:fields>
+												<TextArea name="Advrs" value="{Advrs}" editable="false" id="Advrs_id" cols="5" rows="3"/>
+											</f:fields>
+										</f:FormElement>
+										<f:FormElement label="{i18n>advanceRequestDate}">
+											<f:fields>
+												<Text text="{path:'Rqdat', type:'sap.ui.model.type.Date', formatOptions:{ pattern: 'dd/MM/yyyy'}}"/>
+											</f:fields>
+										</f:FormElement>
+										<f:FormElement label="{i18n>requestId}">
+											<f:fields>
+												<Text id="Reqid" text="{Reqid}"/>
+											</f:fields>
+										</f:FormElement>
+									</f:formElements>
+								</f:FormContainer>
+							</f:formContainers>
+						</f:Form>
+					</IconTabFilter>
+					<IconTabFilter id="iconTabBarFilter2" icon="sap-icon://approvals" tooltip="{i18n>detailIconTabBarApprovals}">
+						<Table items="{ path: 'WfStepSet' }">
+							<columns>
+								<Column>
+									<Text text="{i18n>approverName}"/>
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true">
+									<Text text="{i18n>approvalStatus}"/>
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true">
+									<Text text="{i18n>approvalDates}"/>
+								</Column>
+							</columns>
+							<items>
+								<ColumnListItem vAlign="Middle">
+									<cells>
+										<ObjectIdentifier title="{Ename}" text="{Stptx}"/>
+										<Text text="{path:'Aprsx'}"/>
+										<Text visible="{path:'Aprst',formatter: '.formatter.getWfDateVisibility'}"
+											text="{path:'Aedat', type: 'sap.ui.model.type.Date', formatOptions:{ UTC: true, pattern: 'dd.MM.yyyy'}} {path:'Aetim', type: 'sap.ui.model.odata.type.Time', formatOptions:{pattern:'HH:mm'}}"/>
+									</cells>
+								</ColumnListItem>
+							</items>
+						</Table>
+					</IconTabFilter>
+				</items>
+			</IconTabBar>
+		</semantic:content>
+		<semantic:deleteAction>
+			<semantic:DeleteAction press="onDelete"/>
+		</semantic:deleteAction>
+	</semantic:DetailPage>
+</mvc:View>

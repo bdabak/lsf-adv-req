@@ -1,0 +1,63 @@
+<mvc:View controllerName="com.lesaffre.advance.controller.Master" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns="sap.m"
+	xmlns:semantic="sap.m.semantic">
+	<semantic:MasterPage id="page" title="{masterView>/title}" navButtonPress="onNavBack" showNavButton="true">
+		<semantic:subHeader>
+			<Bar id="headerBar">
+				<contentMiddle>
+					<SearchField id="searchField" showRefreshButton="{= !${device>/support/touch} }" tooltip="{i18n>masterSearchTooltip}" width="100%"
+						search="onSearch"></SearchField>
+				</contentMiddle>
+			</Bar>
+		</semantic:subHeader>
+		<semantic:content>
+			<PullToRefresh id="pullToRefresh" visible="{device>/support/touch}" refresh="onRefresh"/>
+			<!-- For client side filtering add this to the items attribute:  parameters: {operationMode: 'Client'}}" -->
+			<List id="list" items="{ path: '/AdvanceSet', sorter: { path: 'Advtx', descending: false }, groupHeaderFactory: '.createGroupHeader' }"
+				busyIndicatorDelay="{masterView>/delay}" noDataText="{masterView>/noDataText}"
+				mode="{= ${device>/system/phone} ? 'None' : 'SingleSelectMaster'}" growing="true" growingScrollToLoad="true"
+				updateFinished="onUpdateFinished" itemPress=".onItemSelected" >
+				<infoToolbar>
+					<Toolbar active="true" id="filterBar" visible="{masterView>/isFilterBarVisible}" press="onOpenViewSettings">
+						<Title id="filterBarLabel" text="{masterView>/filterBarLabel}"/>
+					</Toolbar>
+				</infoToolbar>
+				<items>
+					<ObjectListItem type="Active" press=".onSelectionChange" title="{Advtx}"
+						number="{ path: 'Advam', formatter: '.formatter.currencyValue' }" numberUnit="{Advcr}">
+						<attributes>
+							<ObjectAttribute text="{ path: 'Rqonm'}" id="attributew4"/>
+						
+							<ObjectAttribute text="{i18n>nextApprover}: { path: 'Aprnm'}" id="attributew5"
+								visible="{= ${Aprnm} !== '' }"
+							/>
+						</attributes>
+						<firstStatus>
+							<ObjectStatus text="{Rqasx}" state="{ path: 'Rqast', formatter: '.formatter.getRequestStatus' }"/>
+						</firstStatus>
+					</ObjectListItem>
+				</items>
+			</List>
+		</semantic:content>
+		<!--<semantic:addAction>
+			<semantic:AddAction press="onNewRequest"/>
+		</semantic:addAction>-->
+		<semantic:positiveAction>
+			<semantic:PositiveAction id='Add' text="{i18n>createNewRequest}" press=".onNewRequest"/>
+		</semantic:positiveAction>
+		<semantic:sort>
+			<semantic:SortSelect id="sort" selectedKey="{masterView>/sortBy}" change="onSort">
+				<core:Item id="masterSort1" key="Advtx" text="{i18n>masterSort1}"/>
+				<core:Item id="masterSort2" key="Advam" text="{i18n>masterSort2}"/>
+			</semantic:SortSelect>
+		</semantic:sort>
+		<semantic:filter>
+			<semantic:FilterAction id="filter" press="onOpenViewSettings"/>
+		</semantic:filter>
+		<!-- <semantic:group>
+			<semantic:GroupSelect id="group" selectedKey="{masterView>/groupBy}" change="onGroup">
+				<core:Item id="masterGroupNone" key="None" text="{i18n>masterGroupNone}"/>
+				<core:Item id="masterGroup1" key="Advam" text="{i18n>masterGroup1}"/>
+			</semantic:GroupSelect>
+		</semantic:group> -->
+	</semantic:MasterPage>
+</mvc:View>

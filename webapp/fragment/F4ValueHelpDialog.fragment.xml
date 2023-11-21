@@ -1,0 +1,31 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<TableSelectDialog contentWidth="35rem" id="tsd" title="Select" search="onF4ValueHelpSearch" confirm="onF4ValueHelpSelected"
+		items="{/F4HelpPersonSet}">
+		<columns>
+			<Column width="5rem">
+				<header>
+					<Text text="Per.No"/>
+				</header>
+			</Column>
+			<Column width="10rem">
+				<header>
+					<Text text="Adı Soyadı"/>
+				</header>
+			</Column>
+			<Column width="10rem">
+				<header>
+					<Text text="Organizasyon Birimi"/>
+				</header>
+			</Column>
+		</columns>
+		<ColumnListItem>
+			<cells>
+				<Text text="{Pernr}"/>
+				<Text text="{Ename}"/>
+				<Text text="{Orgeh}"></Text>
+				<!--<Text text="{TABLE}"/>-->
+			</cells>
+		</ColumnListItem>
+	</TableSelectDialog>
+	<!--search="onF4ValueHelpSearch"-->
+</core:FragmentDefinition>
